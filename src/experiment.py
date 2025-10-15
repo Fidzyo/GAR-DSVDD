@@ -7,7 +7,7 @@ from __future__ import annotations
 
 # -*- coding: utf-8 -*-
 """
-Experiment Suite — Blobs-only, semi-supervised anomaly detectionnchmarks (v14, blobs-only, partial labels, global CSV append)
+Experiment Suite
 
 Key behavior:
 • GAR-DSVDD(attention/gaussian graph): semi-supervised on (labeled normals ∪ unlabeled).
@@ -19,10 +19,6 @@ Tau strategy:
   - GAR-DSVDD, deepsvdd,   - ocsvm: τ = zero   (because score = -decision_function; native boundary at 0)
 • Other options: val_quantile | fpr | youden | zero
 
-wiper (removed) dataset: (removed)
-• Loads per-clip .npy files: wiper (removed)_clip_X/y/sessions.npy
-• X may be (N, D), (N, T, F), or object array of variable-length (Ti, F).
-• Session-aware splits when --wiper (removed)_use_sessions=1 (default).
 
 Outputs:
 • Per-seed CSVs, per-run master CSV with wide columns.

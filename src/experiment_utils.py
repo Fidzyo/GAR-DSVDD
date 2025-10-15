@@ -1,37 +1,5 @@
 from __future__ import annotations
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 13 17:18:06 2025
 
-@author: Taha
-"""
-
-# -*- coding: utf-8 -*-
-"""
-GAR-DSVDD (GAR-DSVDD-style)
-
-Key training pieces (this version):
-- Score f(x) = ||z - c||^2 - m   with m = softplus(eta) (learnable), c fixed to labeled-normal mean.
-- Loss
-    L = mean(d2_lab) + alpha * mean(d2_unl)                       # center loss on (lab + α·unl)
-        + lambda_u * mean_i Σ_j \hat{w}_{ij} (d2_i - d2_j)^2      # smooth raw distances d2 (not f)
-        + beta * ||c||^2                                          # c is fixed; term kept for parity/logging
-  where d2 = ||z - c||^2 and \hat{w} rows are normalized.
-
-- W is a convex blend of base kNN affinity and score-aware attention:
-    e_ij = (q_i^T k_j)/sqrt(dk) - attn_gamma * (ReLU(f_i) + ReLU(f_j))
-    W_attn = softmax(e_ij / attn_tau)   (rowwise over k-NN)
-    W = (1 - attn_mu) * W_base + attn_mu * W_attn
-  Attention uses f only to *downweight* high-scoring nodes when building the graph,
-  but the training smoother operates on d2.
-
-- Laplacian smoother uses ROW-NORMALIZED weights to avoid density bias:
-    smooth = mean_i Σ_j \hat{w}_{ij} (d2_i - d2_j)^2
-
-Notes:
-- c is NOT optimized (DeepSVDD style).
-- m is used for scoring and attention gating; it does not appear in the loss anymore.
-"""
 
 import os, sys, math, json, argparse
 from typing import Any, Dict, List, Optional, Tuple

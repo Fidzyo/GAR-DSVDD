@@ -1,27 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 13 19:51:20 2025
-
-@author: Taha
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 13 14:58:06 2025
-
-@author: Taha
-"""
-
-"""
-grid_runner_wiper (removed).py — robust launcher for paper1_v20.py + GAR-DSVDD on toy/WIPER datasets.
-Runs a full grid and APPENDS all per-run all_runs.csv files into one master CSV.
-
-Usage:
-- Put single values in a 1-element list, e.g. latent = [16]
-- Put multiple values to sweep, e.g. k = [3, 5, 15]
-- Every parameter in PARAMS is passed to the underlying paper script explicitly.
-"""
-
 import itertools, subprocess, sys, shlex, os, glob, csv, datetime, signal
 
 # ---------- Lock working directory & paths ----------

@@ -1,27 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Oct 13 10:22:11 2025
-
-@author: Taha
-"""
-
-# gar_dsvdd.py
-# -----------------------------------------------------------------------------
-# GAR-DSVDD: Graph-Attention Regularized soft-boundary Deep SVDD
-#
-# Updated objective (matches latest design):
-#   Let d2_i = ||z_i - c||^2, m = softplus(eta), f_i = d2_i - m.
-#
-#   L =  L_svdd(labeled)                    # soft-boundary hinge on f for labeled normals ONLY
-#      + alpha * mean_{unlabeled}(d2)       # α-pull to keep unlabeled close to c in latent space
-#      + lambda_u * (d2^T L d2)             # graph smoothness on d2 (NOT on f)
-#      + beta * ||c||^2                     # kept for parity; c is fixed (no grad)
-#
-# Notes:
-# • c is FIXED (registered as buffer, no gradients).
-# • Graph term uses d2 (latent space) to preserve deep, representation-aware smoothing.
-# • Optimizer: AdamW, weight decay on encoder weights only (no decay on biases/norm/eta/c).
-# -----------------------------------------------------------------------------
 
 from typing import Optional, Tuple
 import torch
